@@ -1,2 +1,8 @@
 .vscode/
 .history/
+
+# python stuf
+.pytest_cache
+
+# responder
+static/
