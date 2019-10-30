@@ -1,12 +1,12 @@
-import hej
+import app
 import pytest
 
 @pytest.fixture
 def api():
-    return hej.api
+    return app.api
 
 def test_response(api):
     hello = '{"name": "little orange"}'
 
-    r = api.requests.get(url=api.url_for(hej.route))
+    r = api.requests.get(url=api.url_for(app.route))
     assert r.text == hello
