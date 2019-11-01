@@ -47,8 +47,9 @@ objects:
         kind: ImageStreamTag
         name: ${APPLICATION_NAME}:latest
     source:
-      binary: {}
-      type: Binary
+      git:
+        uri: https://github.com/NissesSenap/python_s2i_pipenv.git
+      type: Git
     strategy:
       sourceStrategy:
         from:
@@ -92,13 +93,12 @@ objects:
     - name: oc-binary-build 
       image: quay.io/openshift-pipeline/openshift-cli:latest
       command: ["/usr/local/bin/oc"]
+      workingDir: /workspace
       args:
         - start-build
         - -w
         - -F
         - ${APPLICATION_NAME}
-        - --from-dir
-        - "."
 - apiVersion: tekton.dev/v1alpha1
   kind: Pipeline
   metadata:
